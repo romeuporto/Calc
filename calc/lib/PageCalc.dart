@@ -10,11 +10,11 @@ class _PageCalcState extends State<PageCalc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal.shade900,
         body: SingleChildScrollView(
           child: Container(
-            color: Colors.teal.shade900,
             padding: EdgeInsets.only(
-              top: 100,
+              top: 80,
               right: 40,
               left: 40,
             ),
@@ -147,6 +147,7 @@ class _PageCalcState extends State<PageCalc> {
                     height: 20,
                   ),
                   RaisedButton(
+                    color: Colors.white,
                     padding: EdgeInsets.only(
                       top: 15,
                       right: 100,
@@ -158,12 +159,9 @@ class _PageCalcState extends State<PageCalc> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Colors.white,
+                        color: Colors.teal.shade900,
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 80,
                   ),
                 ],
               ),
