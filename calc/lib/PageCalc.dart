@@ -7,6 +7,9 @@ class PageCalc extends StatefulWidget {
 }
 
 class _PageCalcState extends State<PageCalc> {
+
+  double _escolhaUsuario;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,9 +102,11 @@ class _PageCalcState extends State<PageCalc> {
                       ),
                       ),
                       Radio(
-                        value: null,
-                        groupValue: null,
-                        onChanged: null,
+                        value: "+",
+                        groupValue: _escolhaUsuario,
+                        onChanged: (escolha){
+                          print("Resultado:" + escolha);
+                        },
                       ),
                       Text("Diminuir (-)",
                         style: TextStyle(
@@ -110,25 +115,29 @@ class _PageCalcState extends State<PageCalc> {
                         ),
                       ),
                       Radio(
-                        value: null,
-                        groupValue: null,
-                        onChanged: null,
+                        value: "-",
+                        groupValue: _escolhaUsuario,
+                        onChanged: (escolha){
+                          print("Resultado:" + escolha);
+                        },
                       ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Text("Multiplicar (x)",
+                      Text("Multiplicar (*)",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Radio(
-                        value: null,
-                        groupValue: null,
-                        onChanged: null,
+                        value: "*",
+                        groupValue: _escolhaUsuario,
+                        onChanged: (escolha){
+                          print("Resultado:" + escolha);
+                        },
                       ),
                       Text("Dividir (/)",
                         style: TextStyle(
@@ -137,9 +146,11 @@ class _PageCalcState extends State<PageCalc> {
                         ),
                       ),
                       Radio(
-                        value: null,
-                        groupValue: null,
-                        onChanged: null,
+                        value: "/",
+                        groupValue: _escolhaUsuario,
+                        onChanged: (escolha){
+                          print("Resultado:" + escolha);
+                        },
                       ),
                     ],
                   ),
@@ -157,11 +168,12 @@ class _PageCalcState extends State<PageCalc> {
                     child: Text(
                       "Cálcular",
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontWeight: FontWeight.w900,
+                        fontSize: 24,
                         color: Colors.teal.shade900,
                       ),
                     ),
+                    onPressed: (){},
                   ),
                 ],
               ),
