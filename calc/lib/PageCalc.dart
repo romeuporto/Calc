@@ -8,6 +8,14 @@ class PageCalc extends StatefulWidget {
 
 class _PageCalcState extends State<PageCalc> {
 
+  int selectedRadio;
+
+  setSelectedRadio(int valor){
+    setState(() {
+      selectedRadio = valor;
+    });
+  }
+
   double _escolhaUsuario;
   
   void corpoCalc() {
@@ -98,9 +106,9 @@ class _PageCalcState extends State<PageCalc> {
                   SizedBox(
                     height: 20,
                   ),
-                 Column(
+                 Row(
                    children: <Widget>[
-                   Row(
+                   ButtonBar(
                      children: <Widget>[
                        Text("Soma (+)",
                          style: TextStyle(
@@ -109,12 +117,11 @@ class _PageCalcState extends State<PageCalc> {
                          ),
                        ),
                        Radio(
-                         value: "+",
-                         groupValue: _escolhaUsuario,
+                         activeColor: Colors.white,
+                         value: 1,
+                         groupValue: selectedRadio,
                          onChanged: (escolha){
-                           setState(() {
-                             _escolhaUsuario = escolha;
-                           });
+                           setSelectedRadio(escolha);
                            print("Resultado:" + escolha);
                          },
                        ),
@@ -125,60 +132,57 @@ class _PageCalcState extends State<PageCalc> {
                          ),
                        ),
                        Radio(
-                         value: "-",
-                         groupValue: _escolhaUsuario,
+                         activeColor: Colors.white,
+                         value: 2,
+                         groupValue: selectedRadio,
                          onChanged: (escolha){
                            setState(() {
-                             _escolhaUsuario = escolha;
+                             setSelectedRadio(escolha);
                            });
                            print("Resultado:" + escolha);
                          },
                        ),
-                       Column(
-                         children: <Widget>[
-                           Row(
-                             children: <Widget>[
-                               Text("Multiplicar (*)",
-                                 style: TextStyle(
-                                   color: Colors.white,
-                                   fontWeight: FontWeight.bold,
-                                 ),
-                               ),
-                               Radio(
-                                 value: "*",
-                                 groupValue: _escolhaUsuario,
-                                 onChanged: (escolha){
-                                   setState(() {
-                                     _escolhaUsuario = escolha;
-                                   });
-                                   print("Resultado:" + escolha);
-                                 },
-                               ),
-                               Text("Dividir (/)",
-                                 style: TextStyle(
-                                   color: Colors.white,
-                                   fontWeight: FontWeight.bold,
-                                 ),
-                               ),
-                               Radio(
-                                 activeColor: Colors.white,
-                                 value: "/",
-                                 groupValue: _escolhaUsuario,
-                                 onChanged: (escolha){
-                                   setState(() {
-                                     _escolhaUsuario = escolha;
-                                   });
-                                   print("Resultado:" + escolha);
-                                 },
-                               ),
-                             ],
-                           ),
-                         ],
-                       ),
                      ],
                    ),
-                 ],
-
+                   ],
+                 ),
+                  Row(
+                    children: <Widget>[
+                      Text("Multiplicar (*)",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Radio(
+                        activeColor: Colors.white,
+                        value: 3,
+                        groupValue: selectedRadio,
+                        onChanged: (escolha){
+                          setState(() {
+                            setSelectedRadio (escolha);
+                          });
+                          print("Resultado:" + escolha);
+                        },
+                      ),
+                      Text("Dividir (/)",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Radio(
+                        activeColor: Colors.white,
+                        value: 4,
+                        groupValue: selectedRadio,
+                        onChanged: (escolha){
+                          setState(() {
+                            setSelectedRadio (escolha);
+                          });
+                          print("Resultado:" + escolha);
+                        },
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: 20,
