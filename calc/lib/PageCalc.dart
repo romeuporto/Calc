@@ -10,7 +10,7 @@ class _PageCalcState extends State<PageCalc> {
 
   double _escolhaUsuario;
   
-  void corpoCalc(){
+  void corpoCalc() {
     var soma;
     var diminui;
     var mult;
