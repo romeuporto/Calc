@@ -8,6 +8,11 @@ class PageCalc extends StatefulWidget {
 
 class _PageCalcState extends State<PageCalc> {
 
+  TextEditingController _controllerSoma = TextEditingController();
+  TextEditingController _controllerDimi = TextEditingController();
+  TextEditingController _controllerMulti = TextEditingController();
+  TextEditingController _controllerDiv = TextEditingController();
+
   int selectedRadio;
 
   setSelectedRadio(int valor){
@@ -15,8 +20,6 @@ class _PageCalcState extends State<PageCalc> {
       selectedRadio = valor;
     });
   }
-
-  double _escolhaUsuario;
   
   void corpoCalc() {
     var soma;
@@ -29,187 +32,197 @@ class _PageCalcState extends State<PageCalc> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal.shade900,
-      body: Container(
-            padding: EdgeInsets.only(
-              top: 80,
-              right: 40,
-              left: 40,
-            ),
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 50,
-                  ),
-                  Text(
-                    "Calc",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 60,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(
-                      height: 30,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "Digite o Valor",
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1.5,
-                            color: Colors.white
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextField(
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      hintText: "Digite o Valor",
-                      hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1.5,
-                            color: Colors.white
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        "Selecione uma operação abaixo:",
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                 Row(
-                   children: <Widget>[
-                   ButtonBar(
-                     children: <Widget>[
-                       Text("Soma (+)",
-                         style: TextStyle(
-                           color: Colors.white,
-                           fontWeight: FontWeight.bold,
-                         ),
-                       ),
-                       Radio(
-                         activeColor: Colors.white,
-                         value: 1,
-                         groupValue: selectedRadio,
-                         onChanged: (escolha){
-                           setSelectedRadio(escolha);
-                           print("Resultado:" + escolha);
-                         },
-                       ),
-                       Text("Diminuir (-)",
-                         style: TextStyle(
-                           color: Colors.white,
-                           fontWeight: FontWeight.bold,
-                         ),
-                       ),
-                       Radio(
-                         activeColor: Colors.white,
-                         value: 2,
-                         groupValue: selectedRadio,
-                         onChanged: (escolha){
-                           setState(() {
-                             setSelectedRadio(escolha);
-                           });
-                           print("Resultado:" + escolha);
-                         },
-                       ),
-                     ],
-                   ),
-                   ],
-                 ),
-                  Row(
-                    children: <Widget>[
-                      Text("Multiplicar (*)",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Radio(
-                        activeColor: Colors.white,
-                        value: 3,
-                        groupValue: selectedRadio,
-                        onChanged: (escolha){
-                          setState(() {
-                            setSelectedRadio (escolha);
-                          });
-                          print("Resultado:" + escolha);
-                        },
-                      ),
-                      Text("Dividir (/)",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Radio(
-                        activeColor: Colors.white,
-                        value: 4,
-                        groupValue: selectedRadio,
-                        onChanged: (escolha){
-                          setState(() {
-                            setSelectedRadio (escolha);
-                          });
-                          print("Resultado:" + escolha);
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  RaisedButton(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(30),
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: 50,
+              ),
+              Text(
+                "Calc",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 60,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: "Digite o Valor",
+                  hintStyle: TextStyle(
                     color: Colors.white,
-                    padding: EdgeInsets.only(
-                      top: 15,
-                      right: 100,
-                      left: 100,
-                      bottom: 15,
+                    fontSize: 18,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 1.5,
+                        color: Colors.white
                     ),
-                    child: Text(
-                      "Cálcular",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 24,
-                        color: Colors.teal.shade900,
-                      ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  hintText: "Digite o Valor",
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 1.5,
+                        color: Colors.white
                     ),
-                    onPressed: (){
-                    },
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Selecione uma operação abaixo:",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
-            ),
+              SizedBox(
+                height: 20,
+              ),
+              Center(
+                child: ButtonBar(
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text("Soma (+)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: 1,
+                          groupValue: selectedRadio,
+                          onChanged: (escolha) {
+                            _controllerSoma;
+                            setSelectedRadio(escolha);
+                            print("Resultado:" + escolha);
+                          },
+                        ),
+                        Text("Diminuir (-)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: 2,
+                          groupValue: selectedRadio,
+                          onChanged: (escolha) {
+                            setState(() {
+                              _controllerDimi;
+                              setSelectedRadio(escolha);
+                            }
+                            );
+                            print("Resultado:" + escolha);
+                          },
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Text("Multiplicar (*)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: 3,
+                          groupValue: selectedRadio,
+                          onChanged: (escolha) {
+                            setState(() {
+                              _controllerMulti;
+                              setSelectedRadio(escolha);
+                            });
+                            print("Resultado:" + escolha);
+                          },
+                        ),
+                        Text("Dividir (/)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: 4,
+                          groupValue: selectedRadio,
+                          onChanged: (escolha) {
+                            setState(() {
+                              _controllerDiv;
+                              setSelectedRadio(escolha);
+                            });
+                            print("Resultado:" + escolha);
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                color: Colors.white,
+                padding: EdgeInsets.only(
+                  top: 15,
+                  right: 100,
+                  left: 100,
+                  bottom: 15,
+                ),
+                child: Text(
+                  "Cálcular",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w900,
+                    fontSize: 24,
+                    color: Colors.teal.shade900,
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ],
           ),
-        );
+        ),
+      ),
+    );
   }
 }
