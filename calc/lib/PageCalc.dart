@@ -9,19 +9,40 @@ class PageCalc extends StatefulWidget {
 class _PageCalcState extends State<PageCalc> {
 
 
-  TextEditingController valor1 = TextEditingController();
-  TextEditingController valor2 = TextEditingController();
+  final TextEditingController valor1 = TextEditingController(text:"0");
+  final TextEditingController valor2 = TextEditingController(text: "0");
 
-  var num1;
-  var num2;
+  var num1 = 0;
+  var num2 = 0;
   var igual = 0;
   var selectedRadio; //Seleção do Radio
 
   void somar(){
     setState(() {
-      valor1 = num1;
-      valor2 = num2;
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
       igual = num1 + num2;
+    });
+  }
+  void dimi(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 - num2;
+    });
+  }
+  void multi(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 * num2;
+    });
+  }
+  void divi(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 ~/ num2;
     });
   }
 
@@ -156,7 +177,7 @@ class _PageCalcState extends State<PageCalc> {
                           activeColor: Colors.white,
                           value: "-",
                           groupValue: selectedRadio,
-                          onChanged: (escolha) {
+                          onChanged: (var escolha) {
                             setState(() {
                               setState(() {
                                 selectedRadio = escolha;
@@ -181,7 +202,7 @@ class _PageCalcState extends State<PageCalc> {
                           activeColor: Colors.white,
                           value: "*",
                           groupValue: selectedRadio,
-                          onChanged: (escolha) {
+                          onChanged: (var escolha) {
                             setState(() {
                               setState(() {
                                 selectedRadio = escolha;
@@ -200,7 +221,7 @@ class _PageCalcState extends State<PageCalc> {
                           activeColor: Colors.white,
                           value: "/",
                           groupValue: selectedRadio,
-                          onChanged: (escolha) {
+                          onChanged: (var escolha) {
                             setState(() {
                               setState(() {
                                 selectedRadio = escolha;
@@ -234,6 +255,10 @@ class _PageCalcState extends State<PageCalc> {
                   ),
                 ),
                 onPressed: () {
+                  somar();
+                  dimi();
+                  multi();
+                  divi();
                   selectedRadio;
                 },
               ),
