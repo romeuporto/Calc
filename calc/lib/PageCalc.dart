@@ -8,25 +8,24 @@ class PageCalc extends StatefulWidget {
 
 class _PageCalcState extends State<PageCalc> {
 
-  TextEditingController _controllerSoma = TextEditingController();
-  TextEditingController _controllerDimi = TextEditingController();
-  TextEditingController _controllerMulti = TextEditingController();
-  TextEditingController _controllerDiv = TextEditingController();
 
-  int selectedRadio;
+  TextEditingController valor1 = TextEditingController();
+  TextEditingController valor2 = TextEditingController();
 
-  setSelectedRadio(int valor){
+  var num1;
+  var num2;
+  var igual = 0;
+  var selectedRadio; //Seleção do Radio
+
+  void somar(){
     setState(() {
-      selectedRadio = valor;
+      valor1 = num1;
+      valor2 = num2;
+      igual = num1 + num2;
     });
   }
-  
-  void corpoCalc() {
-    var soma;
-    var diminui;
-    var mult;
-    var dividir;
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +48,21 @@ class _PageCalcState extends State<PageCalc> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 50,
+              ),
+              Text(
+                "Resultado: $igual",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 10,
               ),
               TextField(
+                controller: valor1,
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -74,6 +85,7 @@ class _PageCalcState extends State<PageCalc> {
                 height: 20,
               ),
               TextField(
+                controller: valor2,
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -125,12 +137,13 @@ class _PageCalcState extends State<PageCalc> {
                         ),
                         Radio(
                           activeColor: Colors.white,
-                          value: 1,
+                          value: "+",
                           groupValue: selectedRadio,
-                          onChanged: (escolha) {
-                            _controllerSoma;
-                            setSelectedRadio(escolha);
-                            print("Resultado:" + escolha);
+                          onChanged: (var escolha) {
+                            setState(() {
+                              selectedRadio = escolha;
+                              print("Resultado:" + escolha);
+                            });
                           },
                         ),
                         Text("Diminuir (-)",
@@ -141,15 +154,16 @@ class _PageCalcState extends State<PageCalc> {
                         ),
                         Radio(
                           activeColor: Colors.white,
-                          value: 2,
+                          value: "-",
                           groupValue: selectedRadio,
                           onChanged: (escolha) {
                             setState(() {
-                              _controllerDimi;
-                              setSelectedRadio(escolha);
-                            }
+                              setState(() {
+                                selectedRadio = escolha;
+                                print("Resultado:" + escolha);
+                              });
+                              }
                             );
-                            print("Resultado:" + escolha);
                           },
                         ),
                       ],
@@ -165,14 +179,15 @@ class _PageCalcState extends State<PageCalc> {
                         ),
                         Radio(
                           activeColor: Colors.white,
-                          value: 3,
+                          value: "*",
                           groupValue: selectedRadio,
                           onChanged: (escolha) {
                             setState(() {
-                              _controllerMulti;
-                              setSelectedRadio(escolha);
+                              setState(() {
+                                selectedRadio = escolha;
+                                print("Resultado:" + escolha);
+                              });
                             });
-                            print("Resultado:" + escolha);
                           },
                         ),
                         Text("Dividir (/)",
@@ -183,14 +198,15 @@ class _PageCalcState extends State<PageCalc> {
                         ),
                         Radio(
                           activeColor: Colors.white,
-                          value: 4,
+                          value: "/",
                           groupValue: selectedRadio,
                           onChanged: (escolha) {
                             setState(() {
-                              _controllerDiv;
-                              setSelectedRadio(escolha);
+                              setState(() {
+                                selectedRadio = escolha;
+                                print("Resultado:" + escolha);
+                              });
                             });
-                            print("Resultado:" + escolha);
                           },
                         ),
                       ],
@@ -217,7 +233,9 @@ class _PageCalcState extends State<PageCalc> {
                     color: Colors.teal.shade900,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  selectedRadio;
+                },
               ),
             ],
           ),
