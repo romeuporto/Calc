@@ -1,3 +1,4 @@
+import 'package:calc/PageResult.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -70,17 +71,6 @@ class _PageCalcState extends State<PageCalc> {
               ),
               SizedBox(
                 height: 50,
-              ),
-              Text(
-                "Resultado: $igual",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 10,
               ),
               TextField(
                 controller: valor1,
@@ -160,7 +150,8 @@ class _PageCalcState extends State<PageCalc> {
                           activeColor: Colors.white,
                           value: "+",
                           groupValue: selectedRadio,
-                          onChanged: (var escolha) {
+                          onChanged:(var escolha) {
+                            somar();
                             setState(() {
                               selectedRadio = escolha;
                               print("Resultado:" + escolha);
@@ -178,6 +169,7 @@ class _PageCalcState extends State<PageCalc> {
                           value: "-",
                           groupValue: selectedRadio,
                           onChanged: (var escolha) {
+                            dimi();
                             setState(() {
                               setState(() {
                                 selectedRadio = escolha;
@@ -203,6 +195,7 @@ class _PageCalcState extends State<PageCalc> {
                           value: "*",
                           groupValue: selectedRadio,
                           onChanged: (var escolha) {
+                            multi();
                             setState(() {
                               setState(() {
                                 selectedRadio = escolha;
@@ -222,6 +215,7 @@ class _PageCalcState extends State<PageCalc> {
                           value: "/",
                           groupValue: selectedRadio,
                           onChanged: (var escolha) {
+                            divi();
                             setState(() {
                               setState(() {
                                 selectedRadio = escolha;
@@ -260,6 +254,12 @@ class _PageCalcState extends State<PageCalc> {
                   multi();
                   divi();
                   selectedRadio;
+                  Navigator.push(
+                      (context),
+                      MaterialPageRoute(
+                          builder: (context) => PageResult()
+                      )
+                  );
                 },
               ),
             ],
