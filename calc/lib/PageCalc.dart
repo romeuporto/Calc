@@ -16,7 +16,14 @@ class _PageCalcState extends State<PageCalc> {
   var num1 = 0;
   var num2 = 0;
   var igual = 0;
-  var selectedRadio; //Seleção do Radio
+  var selectedRadio;
+
+  void calc(){
+    setState(() {
+      igual = valor1.text as int;
+      igual = valor2.text as int ;
+    });
+  }
 
   void somar(){
     setState(() {
@@ -254,6 +261,7 @@ class _PageCalcState extends State<PageCalc> {
                   multi();
                   divi();
                   selectedRadio;
+                  calc();
                   Navigator.push(
                       (context),
                       MaterialPageRoute(

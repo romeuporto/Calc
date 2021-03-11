@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'PageCalc.dart';
 
 class PageResult extends StatefulWidget {
+  int calcTotal;
+  PageResult(this.calcTotal);
+
   @override
   _PageResultState createState() => _PageResultState();
 }
 
 class _PageResultState extends State<PageResult> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
