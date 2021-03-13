@@ -9,9 +9,20 @@ class PageCalc extends StatefulWidget {
 
 class _PageCalcState extends State<PageCalc> {
 
-
   final TextEditingController valor1 = TextEditingController(text:"0");
   final TextEditingController valor2 = TextEditingController(text: "0");
+  String _exibirMsg = "";
+
+  void _calcular(){
+    double caixa1 = double.parse(valor1.text);
+    double caixa2 = double.parse(valor2.text);
+
+    if(caixa1 == null || caixa2 == null){
+      _exibirMsg = "Número inválido! Por favor digite um número mais que '0'";
+    }else{
+      print("Número válido");
+    }
+  }
 
   var num1 = 0;
   var num2 = 0;
@@ -56,6 +67,7 @@ class _PageCalcState extends State<PageCalc> {
       num2 = int.parse(valor2.text);
       igual = num1 ~/ num2;
     });
+    print("Mensagem de erro");
     return "Resposta: $igual";
   }
 
@@ -110,7 +122,12 @@ class _PageCalcState extends State<PageCalc> {
               SizedBox(
                 height: 20,
               ),
-              TextField(
+              TextFormField(
+                validator: (String valor){
+                  if(valor.isEmpty) return "Insira um valor nos campos";
+                  if(valor.isEmpty == 0) return "O valor '0' não é válido";
+                  return null;
+                },
                 controller: valor2,
                 style: TextStyle(
                   color: Colors.white,
@@ -127,6 +144,17 @@ class _PageCalcState extends State<PageCalc> {
                         width: 1.5,
                         color: Colors.white
                     ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  _exibirMsg,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -264,6 +292,7 @@ class _PageCalcState extends State<PageCalc> {
                   ),
                 ),
                 onPressed: () {
+                  _calcular();
                   selectedRadio;
                   Navigator.push(
                       (context),
