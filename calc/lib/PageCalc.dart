@@ -22,6 +22,11 @@ class _PageCalcState extends State<PageCalc> {
     }else{
       print("Número válido");
     }
+    _limparCampos();
+  }
+  void _limparCampos(){
+    valor1.text = "";
+    valor2.text = "";
   }
 
   var num1 = 0;
@@ -82,17 +87,17 @@ class _PageCalcState extends State<PageCalc> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 50,
+                height: 30,
               ),
               Image.asset("images/logo.png",
-                width: 100,
+                width: 90,
                 color: Colors.white,
               ),
               Text(
                 "Calc",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 60,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -291,7 +296,7 @@ class _PageCalcState extends State<PageCalc> {
                     color: Colors.teal.shade900,
                   ),
                 ),
-                onPressed: () {
+                onPressed:(){
                   _calcular();
                   selectedRadio;
                   Navigator.push(
