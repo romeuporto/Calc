@@ -25,41 +25,44 @@ class _PageCalcState extends State<PageCalc> {
     });
   }
 
-  void somar(){
+  String somar(){
     setState(() {
       num1 = int.parse(valor1.text);
       num2 = int.parse(valor2.text);
       igual = num1 + num2;
     });
+    return "Resposta: $igual";
   }
-  void dimi(){
+  String dimi(){
     setState(() {
       num1 = int.parse(valor1.text);
       num2 = int.parse(valor2.text);
       igual = num1 - num2;
     });
+    return "Resposta: $igual";
   }
-  void multi(){
+  String multi(){
     setState(() {
       num1 = int.parse(valor1.text);
       num2 = int.parse(valor2.text);
       igual = num1 * num2;
     });
+    return "Resposta: $igual";
   }
-  void divi(){
+  String divi(){
     setState(() {
       num1 = int.parse(valor1.text);
       num2 = int.parse(valor2.text);
       igual = num1 ~/ num2;
     });
+    return "Resposta: $igual";
   }
-
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal.shade900,
+
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(30),
@@ -262,10 +265,11 @@ class _PageCalcState extends State<PageCalc> {
                   divi();
                   selectedRadio;
                   calc();
+                  var resultFinal = somar(); dimi(); multi(); divi();
                   Navigator.push(
                       (context),
                       MaterialPageRoute(
-                          builder: (context) => PageResult()
+                          builder: (context) => PageResult(resultFinal)
                       )
                   );
                 },

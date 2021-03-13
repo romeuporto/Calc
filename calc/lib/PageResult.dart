@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'PageCalc.dart';
 
 class PageResult extends StatefulWidget {
-  int calcTotal;
-  PageResult(this.calcTotal);
+
+  String calcResult;
+  PageResult(this.calcResult);
+
 
   @override
   _PageResultState createState() => _PageResultState();
@@ -17,12 +19,14 @@ class _PageResultState extends State<PageResult> {
       backgroundColor: Colors.white,
       body: Center(
         child: Container(
-          child: Text(
-            "O Resultado é: ",
-            style: TextStyle(
-              fontSize: 50,
-              fontWeight: FontWeight.w500,
-              color: Colors.teal.shade900,
+          child: Center(
+            child: Text(
+              widget.calcResult,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
