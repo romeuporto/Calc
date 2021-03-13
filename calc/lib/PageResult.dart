@@ -16,14 +16,14 @@ class _PageResultState extends State<PageResult> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.teal.shade900,
       body: Center(
         child: Container(
           child: Center(
             child: Text(
               widget.calcResult,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 50,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),

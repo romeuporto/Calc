@@ -33,6 +33,7 @@ class _PageCalcState extends State<PageCalc> {
     });
     return "Resposta: $igual";
   }
+
   String dimi(){
     setState(() {
       num1 = int.parse(valor1.text);
@@ -62,7 +63,7 @@ class _PageCalcState extends State<PageCalc> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      backgroundColor: Colors.teal.shade900,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(30),
@@ -259,17 +260,11 @@ class _PageCalcState extends State<PageCalc> {
                   ),
                 ),
                 onPressed: () {
-                  somar();
-                  dimi();
-                  multi();
-                  divi();
                   selectedRadio;
-                  calc();
-                  var resultFinal = somar(); dimi(); multi(); divi();
                   Navigator.push(
                       (context),
                       MaterialPageRoute(
-                          builder: (context) => PageResult(resultFinal)
+                          builder: (context) => PageResult("O Resultado é: $igual",)
                       )
                   );
                 },
