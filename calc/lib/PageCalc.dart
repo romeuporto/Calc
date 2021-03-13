@@ -72,6 +72,10 @@ class _PageCalcState extends State<PageCalc> {
               SizedBox(
                 height: 50,
               ),
+              Image.asset("images/logo.png",
+                width: 100,
+                color: Colors.white,
+              ),
               Text(
                 "Calc",
                 style: TextStyle(
@@ -81,7 +85,7 @@ class _PageCalcState extends State<PageCalc> {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 10,
               ),
               TextField(
                 controller: valor1,
