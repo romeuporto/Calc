@@ -13,6 +13,7 @@ class _PageCalcState extends State<PageCalc> {
   final TextEditingController valor2 = TextEditingController(text: "0");
   String _exibirMsg = "";
 
+
   void _calcular(){
     double caixa1 = double.parse(valor1.text);
     double caixa2 = double.parse(valor2.text);
@@ -297,14 +298,14 @@ class _PageCalcState extends State<PageCalc> {
                   ),
                 ),
                 onPressed:(){
-                  _calcular();
-                  selectedRadio;
-                  Navigator.push(
-                      (context),
-                      MaterialPageRoute(
-                          builder: (context) => PageResult("O Resultado é: $igual",)
-                      )
-                  );
+                    _calcular();
+                    selectedRadio;
+                    Navigator.push(
+                        (context),
+                        MaterialPageRoute(
+                            builder: (context) => PageResult("O Resultado é: $igual",)
+                        )
+                    );
                 },
               ),
             ],
