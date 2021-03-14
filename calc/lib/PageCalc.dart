@@ -1,8 +1,11 @@
 import 'package:calc/PageResult.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'RadiosCalc.dart';
 class PageCalc extends StatefulWidget {
+
+  String resultIgual;
+  PageResult(this.resultIgual);
+
   @override
   _PageCalcState createState() => _PageCalcState();
 }
@@ -11,8 +14,12 @@ class _PageCalcState extends State<PageCalc> {
 
   final TextEditingController valor1 = TextEditingController(text:"0");
   final TextEditingController valor2 = TextEditingController(text: "0");
-  String _exibirMsg = "";
 
+  String _exibirMsg = "";
+  void _limparCampos(){
+    valor1.text = "";
+    valor2.text = "";
+  }
 
   void _calcular(){
     double caixa1 = double.parse(valor1.text);
@@ -25,58 +32,6 @@ class _PageCalcState extends State<PageCalc> {
     }
     _limparCampos();
   }
-  void _limparCampos(){
-    valor1.text = "";
-    valor2.text = "";
-  }
-
-  var num1 = 0;
-  var num2 = 0;
-  var igual = 0;
-  var selectedRadio;
-
-  void calc(){
-    setState(() {
-      igual = valor1.text as int;
-      igual = valor2.text as int ;
-    });
-  }
-
-  String somar(){
-    setState(() {
-      num1 = int.parse(valor1.text);
-      num2 = int.parse(valor2.text);
-      igual = num1 + num2;
-    });
-    return "Resposta: $igual";
-  }
-
-  String dimi(){
-    setState(() {
-      num1 = int.parse(valor1.text);
-      num2 = int.parse(valor2.text);
-      igual = num1 - num2;
-    });
-    return "Resposta: $igual";
-  }
-  String multi(){
-    setState(() {
-      num1 = int.parse(valor1.text);
-      num2 = int.parse(valor2.text);
-      igual = num1 * num2;
-    });
-    return "Resposta: $igual";
-  }
-  String divi(){
-    setState(() {
-      num1 = int.parse(valor1.text);
-      num2 = int.parse(valor2.text);
-      igual = num1 ~/ num2;
-    });
-    print("Mensagem de erro");
-    return "Resposta: $igual";
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -153,9 +108,7 @@ class _PageCalcState extends State<PageCalc> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
+              Text(
                   _exibirMsg,
                   style: TextStyle(
                     color: Colors.red,
@@ -163,7 +116,6 @@ class _PageCalcState extends State<PageCalc> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
               SizedBox(
                 height: 20,
               ),
@@ -189,90 +141,15 @@ class _PageCalcState extends State<PageCalc> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Text("Soma (+)",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Radio(
-                          activeColor: Colors.white,
-                          value: "+",
-                          groupValue: selectedRadio,
-                          onChanged:(var escolha) {
-                            somar();
-                            setState(() {
-                              selectedRadio = escolha;
-                              print("Resultado:" + escolha);
-                            });
-                          },
-                        ),
-                        Text("Diminuir (-)",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Radio(
-                          activeColor: Colors.white,
-                          value: "-",
-                          groupValue: selectedRadio,
-                          onChanged: (var escolha) {
-                            dimi();
-                            setState(() {
-                              setState(() {
-                                selectedRadio = escolha;
-                                print("Resultado:" + escolha);
-                              });
-                              }
-                            );
-                          },
-                        ),
+                        RadiosCalc(),
+                        RadiosCalc(),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Text("Multiplicar (*)",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Radio(
-                          activeColor: Colors.white,
-                          value: "*",
-                          groupValue: selectedRadio,
-                          onChanged: (var escolha) {
-                            multi();
-                            setState(() {
-                              setState(() {
-                                selectedRadio = escolha;
-                                print("Resultado:" + escolha);
-                              });
-                            });
-                          },
-                        ),
-                        Text("Dividir (/)",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Radio(
-                          activeColor: Colors.white,
-                          value: "/",
-                          groupValue: selectedRadio,
-                          onChanged: (var escolha) {
-                            divi();
-                            setState(() {
-                              setState(() {
-                                selectedRadio = escolha;
-                                print("Resultado:" + escolha);
-                              });
-                            });
-                          },
-                        ),
+                        RadiosCalc(),
+                        RadiosCalc(),
                       ],
                     ),
                   ],

@@ -6,7 +6,6 @@ class PageResult extends StatefulWidget {
   String calcResult;
   PageResult(this.calcResult);
 
-
   @override
   _PageResultState createState() => _PageResultState();
 }
