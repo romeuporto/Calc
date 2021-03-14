@@ -9,9 +9,7 @@ class PageResult extends StatefulWidget {
   @override
   _PageResultState createState() => _PageResultState();
 }
-
 class _PageResultState extends State<PageResult> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,15 +1,10 @@
 import 'package:calc/PageResult.dart';
 import 'package:flutter/material.dart';
-import 'RadiosCalc.dart';
+
 class PageCalc extends StatefulWidget {
-
-  String resultIgual;
-  PageResult(this.resultIgual);
-
   @override
   _PageCalcState createState() => _PageCalcState();
 }
-
 class _PageCalcState extends State<PageCalc> {
 
   final TextEditingController valor1 = TextEditingController(text:"0");
@@ -31,6 +26,51 @@ class _PageCalcState extends State<PageCalc> {
       print("Número válido");
     }
     _limparCampos();
+  }
+
+  var num1 = 0;
+  var num2 = 0;
+  var igual = 0;
+  var selectedRadio;
+
+  void calc(){
+    setState(() {
+      igual = valor1.text as int;
+      igual = valor2.text as int ;
+    });
+  }
+
+  String somar(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 + num2;
+    });
+    return "Resposta: $igual";
+  }
+  String dimi(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 - num2;
+    });
+    return "Resposta: $igual";
+  }
+  String multi(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 * num2;
+    });
+    return "Resposta: $igual";
+  }
+  String divi(){
+    setState(() {
+      num1 = int.parse(valor1.text);
+      num2 = int.parse(valor2.text);
+      igual = num1 ~/ num2;
+    });
+    return "Resposta: $igual";
   }
 
   @override
@@ -87,7 +127,6 @@ class _PageCalcState extends State<PageCalc> {
                 validator: (String valor){
                   if(valor.isEmpty) return "Insira um valor nos campos";
                   if(valor.isEmpty == 0) return "O valor '0' não é válido";
-                  return null;
                 },
                 controller: valor2,
                 style: TextStyle(
@@ -141,15 +180,79 @@ class _PageCalcState extends State<PageCalc> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        RadiosCalc(),
-                        RadiosCalc(),
+                        Text("Somar (+)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: "+",
+                          groupValue: selectedRadio,
+                          onChanged: (var escolha) {
+                            setState(() {
+                              somar();
+                              selectedRadio = escolha;
+                            });
+                          },
+                        ),
+                        Text("Diminuir (-)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: "-",
+                          groupValue: selectedRadio,
+                          onChanged: (var escolha) {
+                            setState(() {
+                              dimi();
+                              selectedRadio = escolha;
+                            });
+                          },
+                        ),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        RadiosCalc(),
-                        RadiosCalc(),
+                        Text("Multiplicar(*)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: "*",
+                          groupValue: selectedRadio,
+                          onChanged: (var escolha) {
+                            setState(() {
+                              multi();
+                              selectedRadio = escolha;
+                            });
+                          },
+                        ),
+                        Text("Dividir (/)",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Radio(
+                          activeColor: Colors.white,
+                          value: "/",
+                          groupValue: selectedRadio,
+                          onChanged: (var escolha) {
+                            setState(() {
+                              divi();
+                              selectedRadio = escolha;
+                            });
+                          },
+                        ),
                       ],
                     ),
                   ],
@@ -181,8 +284,7 @@ class _PageCalcState extends State<PageCalc> {
                         (context),
                         MaterialPageRoute(
                             builder: (context) => PageResult("O Resultado é: $igual",)
-                        )
-                    );
+                        ));
                 },
               ),
             ],
