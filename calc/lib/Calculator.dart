@@ -1,4 +1,4 @@
-import 'package:calc/PageResult.dart';
+import 'Result.dart';
 import 'package:flutter/material.dart';
 
 class PageCalc extends StatefulWidget {
@@ -148,13 +148,13 @@ class _PageCalcState extends State<PageCalc> {
                 ),
               ),
               Text(
-                  _exibirMsg,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                _exibirMsg,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -278,13 +278,13 @@ class _PageCalcState extends State<PageCalc> {
                   ),
                 ),
                 onPressed:(){
-                    _calcular();
-                    selectedRadio;
-                    Navigator.push(
-                        (context),
-                        MaterialPageRoute(
-                            builder: (context) => PageResult("O Resultado é: $igual",)
-                        ));
+                  _calcular();
+                  selectedRadio;
+                  Navigator.push(
+                      (context),
+                      MaterialPageRoute(
+                          builder: (context) => PageResult("O Resultado é: $igual",)
+                      ));
                 },
               ),
             ],
